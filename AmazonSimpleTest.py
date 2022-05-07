@@ -7,9 +7,10 @@ from Pages.CartPage import CartPageClass
 
 class myGoogleTest(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome("chromedriver.exe")
+        self.driver = webdriver.Chrome("../Common/Drivers/chromedriver.exe")
         self.driver.delete_all_cookies()
         self.driver.maximize_window()
+        self.driver.implicitly_wait(10)
         self.mainPage = MainPageClass(self.driver)
         self.homePage = HomePageClass(self.driver)
         self.cartPage = CartPageClass(self.driver)
@@ -20,15 +21,14 @@ class myGoogleTest(unittest.TestCase):
         self.mainPage.fill_email_field("eduard.iskandarian@gmail.com")
         time.sleep(1)
         self.mainPage.press_continue_button()
-        time.sleep(1)
+        time.sleep(3)
         self.mainPage.input_password_field("091313059")
-        time.sleep(1)
+        time.sleep(3)
         self.mainPage.press_sign_in_button()
-        time.sleep(1)
+        time.sleep(3)
         self.homePage.press_cart_button()
-        time.sleep(1)
-        self.cartPage.press_delete_button()
-
+        time.sleep(3)
+        self.cartPage.delete_all_items_from_cart()
 
 
     def tearDown(self):
